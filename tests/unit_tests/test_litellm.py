@@ -1619,7 +1619,7 @@ def test_convert_message_to_dict_strips_thinking_blocks() -> None:
 
 
 def test_convert_message_to_dict_strips_normalized_reasoning_blocks() -> None:
-    """Reasoning in langchain-core's standard shapes must not reach providers. Fixes #222."""
+    """Reasoning in langchain-core's standard shapes must not reach providers."""
     msg = AIMessage(
         content=[
             {"type": "reasoning", "reasoning": "internal reasoning"},
@@ -1645,7 +1645,7 @@ def test_reasoning_round_trip_through_content_blocks() -> None:
 
     LangGraph and output_version="v1" consumers persist content_blocks, which
     surface reasoning_content as a reasoning block; DeepSeek rejects that block
-    with "unknown variant `reasoning`, expected `text`". Fixes #222.
+    with "unknown variant `reasoning`, expected `text`".
     """
     reply = _convert_dict_to_message(
         {

@@ -949,9 +949,9 @@ def _convert_message_to_dict(message: BaseMessage) -> dict[str, Any]:
                     new_content.append(converted)
 
                 # Skip tool calls and reasoning: tool calls go out via
-                # message.tool_calls and reasoning via reasoning_content, so
-                # as content they only reach providers that reject them (e.g.
-                # DeepSeek: "unknown variant `reasoning`, expected `text`").
+                # message.tool_calls, reasoning via reasoning_content, and signed
+                # thinking only via thinking_blocks, where replay checks its signer.
+                # DeepSeek, for one, rejects a reasoning block sent as content.
                 elif _is_skipped_content_block(item):
                     continue
 
